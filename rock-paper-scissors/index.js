@@ -35,6 +35,16 @@ function translateMove(move) {
   }
 }
 
+function getImgFromMove(move) {
+  if (move === rock) {
+    return rockImg;
+  } else if (move == paper) {
+    return paperImg;
+  } else if (move == scissors) {
+    return scissorsImg;
+  }
+}
+
 // Reset functions:
 
 function resetScore() {
@@ -47,7 +57,6 @@ function resetScore() {
   resetWinner();
   resetMoves();
   localStorage.removeItem("score");
-  alert("Score has been restarted...");
 }
 
 function resetWinner() {
@@ -79,8 +88,26 @@ function updateWinner(winner) {
 }
 
 function updateMoves(userMove, pcMove) {
-  document.querySelector(".js-moves").innerHTML =
-    "You " + userMove + " - " + pcMove + " PC";
+  let userImg = document.createElement("img");
+  let pcImg = document.createElement("img");
+
+  let userImgPath = getImgFromMove(userMove);
+  let pcImgPath = getImgFromMove(pcMove);
+
+  let movesP = document.querySelector(".js-moves");
+
+  userImg.src = userImgPath;
+  userImg.classList.add("move-icon");
+  pcImg.src = pcImgPath;
+  pcImg.classList.add("move-icon");
+
+  movesP.innerHTML = "";
+
+  movesP.appendChild(document.createTextNode("You) "));
+  movesP.appendChild(userImg);
+  movesP.appendChild(document.createTextNode(" - "));
+  movesP.appendChild(pcImg);
+  movesP.appendChild(document.createTextNode(" (PC "));
 }
 
 let score = JSON.parse(localStorage.getItem("score")) || {
@@ -90,13 +117,24 @@ let score = JSON.parse(localStorage.getItem("score")) || {
 };
 
 // Winner variables
-let user = "You";
-let pc = "PC";
-let tie = "Tie.";
+const user = "You";
+const pc = "PC";
+const tie = "Tie.";
 
 // Playable moves
-let rock = "Rock";
-let paper = "Paper";
-let scissors = "Scissors";
+const rock = "Rock";
+const paper = "Paper";
+const scissors = "Scissors";
+
+// Images variables
+const imagesPath = "images/";
+const rockImg = imagesPath + "rock-emoji.png";
+const paperImg = imagesPath + "paper-emoji.png";
+const scissorsImg = imagesPath + "scissors-emoji.png";
+
+// Image setters
+document.querySelector(".js-rock-btn-img").src = rockImg;
+document.querySelector(".js-paper-btn-img").src = paperImg;
+document.querySelector(".js-scissors-btn-img").src = scissorsImg;
 
 updateScore(score);

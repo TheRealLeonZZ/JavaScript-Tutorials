@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 
 <body>
     <h1>Rock Paper Scissors</h1>
-    <button onclick="
+    <button class="move-button" onclick="
         userPlay = rock;
         mainGame(userPlay);
-        ">Rock</button>
+    "><img class="js-rock-btn-img move-icon"></button>
 
-    <button onclick="
+    <button class="move-button" onclick="
         userPlay = paper;
         mainGame(userPlay);
-        ">Paper</button>
+    "><img class="js-paper-btn-img move-icon"></button>
 
-    <button onclick="
+    <button class="move-button" onclick="
         userPlay = scissors;
         mainGame(userPlay);
-    ">Scissors</button>
+    "><img class="js-scissors-btn-img move-icon"></button>
 
-    <p class="js-winner-paragraph"></p>
+    <p class="js-winner-paragraph winner-paragraph"></p>
     <p class="js-moves"></p>
     <p class="js-score-paragraph"></p>
 
