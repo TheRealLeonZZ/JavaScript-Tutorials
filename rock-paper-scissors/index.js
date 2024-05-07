@@ -18,10 +18,7 @@ function mainGame(userChoice) {
     score.losses++;
   }
 
-  if (!score) {
-    console.log("theres no score");
-    localStorage.setItem("score", JSON.stringify(score));
-  }
+  localStorage.setItem("score", JSON.stringify(score));
 
   alert(
     "User's choice: " +
