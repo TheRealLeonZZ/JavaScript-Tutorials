@@ -51,17 +51,17 @@ function resetScore() {
 }
 
 function resetWinner() {
-  document.querySelector(".winner-paragraph").innerHTML = "";
+  document.querySelector(".js-winner-paragraph").innerHTML = "";
 }
 
 function resetMoves() {
-  document.querySelector(".moves").innerHTML = "";
+  document.querySelector(".js-moves").innerHTML = "";
 }
 
 // Update functions:
 
 function updateScore(score) {
-  document.querySelector(".score-paragraph").innerHTML =
+  document.querySelector(".js-score-paragraph").innerHTML =
     "Score is: Wins = " +
     score.wins +
     " Losses = " +
@@ -72,14 +72,14 @@ function updateScore(score) {
 
 function updateWinner(winner) {
   if (winner === tie) {
-    document.querySelector(".winner-paragraph").innerHTML = "It's a tie.";
+    document.querySelector(".js-winner-paragraph").innerHTML = "It's a tie.";
   } else {
-    document.querySelector(".winner-paragraph").innerHTML = winner + " win.";
+    document.querySelector(".js-winner-paragraph").innerHTML = winner + " win.";
   }
 }
 
 function updateMoves(userMove, pcMove) {
-  document.querySelector(".moves").innerHTML =
+  document.querySelector(".js-moves").innerHTML =
     "You " + userMove + " - " + pcMove + " PC";
 }
 
