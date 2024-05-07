@@ -1,40 +1,41 @@
-function mainGame(userChoice) {
+function mainGame(userMove) {
   computerRand = Math.floor(Math.random() * 3) + 1;
-  computerRand = translateMove(computerRand);
+  pcMove = translateMove(computerRand);
   let winner;
 
-  if (userChoice === computerRand) {
-    winner = "Tie.";
+  if (userMove === pcMove) {
+    winner = tie;
     score.ties++;
   } else if (
-    (userChoice === "Rock" && computerRand === "Scissors") ||
-    (userChoice === "Paper" && computerRand === "Rock") ||
-    (userChoice === "Scissors" && computerRand === "Paper")
+    (userMove === rock && pcMove === scissors) ||
+    (userMove === paper && pcMove === rock) ||
+    (userMove === scissors && pcMove === paper)
   ) {
-    winner = "User";
+    winner = user;
     score.wins++;
   } else {
-    winner = "PC";
+    winner = pc;
     score.losses++;
   }
 
   localStorage.setItem("score", JSON.stringify(score));
-
-  alert(
-    "User's choice: " +
-      userChoice +
-      "\nComputer's choice: " +
-      computerRand +
-      "\nWinner is: " +
-      winner +
-      "\nScore is: Wins = " +
-      score.wins +
-      " losses = " +
-      score.losses +
-      " Ties = " +
-      score.ties
-  );
+  updateWinner(winner);
+  updateMoves(userMove, pcMove);
+  updateScore(score);
 }
+
+//   1 = rock, 2 = paper, 3 = scissors
+function translateMove(move) {
+  if (move === 1) {
+    return rock;
+  } else if (move === 2) {
+    return paper;
+  } else if (move === 3) {
+    return scissors;
+  }
+}
+
+// Reset functions:
 
 function resetScore() {
   score = {
@@ -42,19 +43,44 @@ function resetScore() {
     losses: 0,
     ties: 0,
   };
+  updateScore(score);
+  resetWinner();
+  resetMoves();
   localStorage.removeItem("score");
   alert("Score has been restarted...");
 }
 
-//   1 = rock, 2 = paper, 3 = scissors
-function translateMove(move) {
-  if (move === 1) {
-    return "Rock";
-  } else if (move === 2) {
-    return "Paper";
-  } else if (move === 3) {
-    return "Scissors";
+function resetWinner() {
+  document.querySelector(".winner-paragraph").innerHTML = "";
+}
+
+function resetMoves() {
+  document.querySelector(".moves").innerHTML = "";
+}
+
+// Update functions:
+
+function updateScore(score) {
+  document.querySelector(".score-paragraph").innerHTML =
+    "Score is: Wins = " +
+    score.wins +
+    " Losses = " +
+    score.losses +
+    " Ties = " +
+    score.ties;
+}
+
+function updateWinner(winner) {
+  if (winner === tie) {
+    document.querySelector(".winner-paragraph").innerHTML = "It's a tie.";
+  } else {
+    document.querySelector(".winner-paragraph").innerHTML = winner + " win.";
   }
+}
+
+function updateMoves(userMove, pcMove) {
+  document.querySelector(".moves").innerHTML =
+    "You " + userMove + " - " + pcMove + " PC";
 }
 
 let score = JSON.parse(localStorage.getItem("score")) || {
@@ -62,3 +88,15 @@ let score = JSON.parse(localStorage.getItem("score")) || {
   losses: 0,
   ties: 0,
 };
+
+// Winner variables
+let user = "You";
+let pc = "PC";
+let tie = "Tie.";
+
+// Playable moves
+let rock = "Rock";
+let paper = "Paper";
+let scissors = "Scissors";
+
+updateScore(score);

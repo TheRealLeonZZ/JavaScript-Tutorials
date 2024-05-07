@@ -10,19 +10,23 @@
 <body>
     <h1>Rock Paper Scissors</h1>
     <button onclick="
-        userPlay = 'Rock';
+        userPlay = rock;
         mainGame(userPlay);
         ">Rock</button>
 
     <button onclick="
-        userPlay = 'Paper';
+        userPlay = paper;
         mainGame(userPlay);
         ">Paper</button>
 
     <button onclick="
-        userPlay = 'Scissors';
+        userPlay = scissors;
         mainGame(userPlay);
     ">Scissors</button>
+
+    <p class="winner-paragraph"></p>
+    <p class="moves"></p>
+    <p class="score-paragraph"></p>
 
     <button onclick="
         resetScore()
