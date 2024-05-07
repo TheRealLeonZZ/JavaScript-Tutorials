@@ -24,8 +24,17 @@ body {
 .winner-paragraph {
   font-size: 24px;
   font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
+.moves-paragraph {
+  margin-bottom: 40px;
+}
+
+.score-paragraph {
+  margin-bottom: 40px;
+}
 .reset-score-button {
   font-size: 22px;
   color: white;
