@@ -1,7 +1,3 @@
-// const jsButton = document.querySelector(".js-button");
-
-// jsButton.classList.add("secondary-button");
-
 function toggleButton(jsButton) {
   // Remove toggled class from all buttons
   const allButtons = document.querySelectorAll(".my-button");

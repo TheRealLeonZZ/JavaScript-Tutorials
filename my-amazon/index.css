@@ -1,0 +1,20 @@
+.my-button {
+  font-family: Arial;
+  font-size: 18px;
+  background-color: rgb(31, 185, 0);
+  color: white;
+  border: none;
+  /* border-radius: 10px; */
+  padding: 10px 15px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.cost-input {
+  font-family: Arial;
+  font-size: 16px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
