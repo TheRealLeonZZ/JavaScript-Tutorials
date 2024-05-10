@@ -9,13 +9,14 @@ function addTodo() {
 }
 
 function showTodo() {
-  document.querySelector(".js-todoList").innerHTML = "";
+  const todoListDiv = document.querySelector(".js-todoList");
+  todoListHTML = "";
   for (let i = 0; i < todoList.length; i++) {
-    document.querySelector(".js-todoList").innerHTML +=
-      todoList[i] +
-      ` <button class="my-button delete-button" onclick="deleteTodo('${todoList[i]}')">Delete</button>` +
-      "<br>";
+    const todo = todoList[i];
+    const html = `<p>${todo} <button class="my-button delete-button" onclick="deleteTodo('${todo}')">Delete</button></p>`;
+    todoListHTML += html;
   }
+  todoListDiv.innerHTML = todoListHTML;
 }
 
 function deleteTodo(name) {
