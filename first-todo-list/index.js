@@ -16,7 +16,7 @@ function showTodo() {
     const html = `
       <p>
         ${todo} 
-        <button class="my-button delete-button" onclick="deleteTodo('${todo}')">Delete</button>
+        <button class="my-button delete-button" onclick="deleteTodo('${i}')">Delete</button>
       </p>
     `;
     todoListHTML += html;
@@ -24,8 +24,7 @@ function showTodo() {
   todoListDiv.innerHTML = todoListHTML;
 }
 
-function deleteTodo(name) {
-  let deletedIndex = todoList.findIndex((todo) => todo == name);
+function deleteTodo(deletedIndex) {
   todoList.splice(deletedIndex, 1);
   localStorage.setItem("todoList", JSON.stringify(todoList));
   showTodo();
