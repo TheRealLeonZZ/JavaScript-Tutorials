@@ -1,6 +1,6 @@
 function mainGame(userMove) {
-  computerRand = Math.floor(Math.random() * 3) + 1;
-  pcMove = translateMove(computerRand);
+  let computerRand = Math.floor(Math.random() * 3) + 1;
+  let pcMove = translateMove(computerRand);
   let winner;
 
   if (userMove === pcMove) {
@@ -22,6 +22,24 @@ function mainGame(userMove) {
   updateWinner(winner);
   updateMoves(userMove, pcMove);
   updateScore(score);
+}
+
+function autoPlay() {
+  if (!isPlaying) {
+    isPlaying = true;
+    document.querySelector(".js-autoplay-button").innerHTML = "Stop AutoPlay";
+
+    gameInterval = setInterval(() => {
+      //Generate moves
+      let computerRand = Math.floor(Math.random() * 3) + 1;
+      let userMove = translateMove(computerRand);
+      mainGame(userMove);
+    }, 500);
+  } else {
+    isPlaying = false;
+    document.querySelector(".js-autoplay-button").innerHTML = "AutoPlay";
+    clearInterval(gameInterval);
+  }
 }
 
 //   1 = rock, 2 = paper, 3 = scissors
@@ -115,6 +133,9 @@ let score = JSON.parse(localStorage.getItem("score")) || {
   losses: 0,
   ties: 0,
 };
+
+let isPlaying = false;
+let gameInterval;
 
 // Winner variables
 const user = "You";

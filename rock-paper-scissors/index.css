@@ -35,13 +35,21 @@ body {
 .score-paragraph {
   margin-bottom: 40px;
 }
-.reset-score-button {
+
+.my-button {
   font-size: 22px;
   color: white;
   padding: 10px 24px;
-  border-color: green;
   border-style: solid;
   border-width: 2px;
   background-color: transparent;
   cursor: pointer;
+}
+
+.reset-score-button {
+  border-color: green;
+}
+
+.autoplay-button {
+  border-color: darkslateblue;
 }
