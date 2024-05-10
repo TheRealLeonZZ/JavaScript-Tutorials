@@ -1,0 +1,35 @@
+body {
+  font-family: Arial;
+}
+
+.my-button {
+  font-family: Arial;
+  font-size: 18px;
+  padding: 10px 15px;
+  margin-left: 15px;
+  cursor: pointer;
+  border: none;
+}
+.add-button {
+  background-color: rgb(31, 185, 0);
+  color: white;
+}
+
+.delete-button {
+  background-color: rgb(185, 0, 0);
+  color: white;
+  margin-bottom: 15px;
+}
+
+.todoName-input {
+  font-family: Arial;
+  font-size: 16px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.todo-list {
+  font-size: 24px;
+}
