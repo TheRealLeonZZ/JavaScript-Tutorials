@@ -10,9 +10,16 @@
 
 <body>
     <h1>My First Todo List </h1>
-    <input placeholder="Todo Name" class="js-todoName-input todoName-input" onkeydown="handleCostKeydown(event.key)">
-    <button class="my-button add-button" onclick=" addTodo()">Add</button>
-    <div class="js-todoList todo-list"></div>
+    <div class="todo-input-grid">
+        <input placeholder="Todo Name" class="js-todoName-input todoName-input"
+            onkeydown="handleCostKeydown(event.key)">
+
+        <input type="date" class="js-dueDate-input dueDate-input">
+
+        <button class="my-button add-button" onclick=" addTodo()">Add</button>
+
+    </div>
+    <div class="js-todo-list todo-list todo-grid"></div>
 
     <script src=" index.js"></script>
 </body>

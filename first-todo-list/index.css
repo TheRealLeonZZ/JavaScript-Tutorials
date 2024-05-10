@@ -5,11 +5,10 @@ body {
 .my-button {
   font-family: Arial;
   font-size: 18px;
-  padding: 10px 15px;
-  margin-left: 15px;
   cursor: pointer;
   border: none;
 }
+
 .add-button {
   background-color: rgb(31, 185, 0);
   color: white;
@@ -18,13 +17,24 @@ body {
 .delete-button {
   background-color: rgb(185, 0, 0);
   color: white;
-  margin-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .todoName-input {
   font-family: Arial;
   font-size: 16px;
   padding: 10px;
+  padding-right: 50px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.dueDate-input {
+  font-family: Arial;
+  font-size: 16px;
+  padding: 9px 20px;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -32,4 +42,19 @@ body {
 
 .todo-list {
   font-size: 24px;
+}
+
+.todo-grid,
+.todo-input-grid {
+  display: grid;
+  grid-template-columns: 260px 180px 100px;
+  margin: 20px 0px;
+  column-gap: 30px;
+  row-gap: 15px;
+  align-items: center;
+}
+
+.todo-input-grid {
+  margin-bottom: 10px;
+  align-items: stretch;
 }

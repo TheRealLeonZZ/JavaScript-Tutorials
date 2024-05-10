@@ -1,7 +1,13 @@
 function addTodo() {
   const todoInputElement = document.querySelector(".js-todoName-input");
+  const todoDueDateElement = document.querySelector(".js-dueDate-input");
   const todoName = todoInputElement.value;
-  todoList.push(todoName);
+  const todoDueDate = todoDueDateElement.value;
+  const newTodo = {
+    name: todoName,
+    dueDate: todoDueDate,
+  };
+  todoList.push(newTodo);
   localStorage.setItem("todoList", JSON.stringify(todoList));
 
   showTodo();
@@ -9,15 +15,15 @@ function addTodo() {
 }
 
 function showTodo() {
-  const todoListDiv = document.querySelector(".js-todoList");
+  const todoListDiv = document.querySelector(".js-todo-list");
   todoListHTML = "";
   for (let i = 0; i < todoList.length; i++) {
-    const todo = todoList[i];
+    const todoName = todoList[i].name;
+    const todoDueDate = todoList[i].dueDate;
     const html = `
-      <p>
-        ${todo} 
-        <button class="my-button delete-button" onclick="deleteTodo('${i}')">Delete</button>
-      </p>
+      <div>${todoName}</div> 
+      <div>${todoDueDate}</div>
+      <button class="my-button delete-button" onclick="deleteTodo('${i}')">Delete</button>
     `;
     todoListHTML += html;
   }
@@ -36,6 +42,11 @@ function handleCostKeydown(key) {
   }
 }
 
-let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+let todoList = JSON.parse(localStorage.getItem("todoList")) || [
+  {
+    name: "",
+    dueDate: "",
+  },
+];
 let todoListHTML = "";
 showTodo();
