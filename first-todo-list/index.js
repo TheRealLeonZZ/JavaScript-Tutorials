@@ -13,7 +13,12 @@ function showTodo() {
   todoListHTML = "";
   for (let i = 0; i < todoList.length; i++) {
     const todo = todoList[i];
-    const html = `<p>${todo} <button class="my-button delete-button" onclick="deleteTodo('${todo}')">Delete</button></p>`;
+    const html = `
+      <p>
+        ${todo} 
+        <button class="my-button delete-button" onclick="deleteTodo('${todo}')">Delete</button>
+      </p>
+    `;
     todoListHTML += html;
   }
   todoListDiv.innerHTML = todoListHTML;
