@@ -17,16 +17,18 @@ function addTodo() {
 function showTodo() {
   const todoListDiv = document.querySelector(".js-todo-list");
   todoListHTML = "";
-  for (let i = 0; i < todoList.length; i++) {
-    const todoName = todoList[i].name;
-    const todoDueDate = todoList[i].dueDate;
+
+  todoList.forEach(function (todoObject, index) {
+    const todoName = todoObject.name;
+    const todoDueDate = todoObject.dueDate;
     const html = `
       <div>${todoName}</div> 
       <div>${todoDueDate}</div>
-      <button class="my-button delete-button" onclick="deleteTodo('${i}')">Delete</button>
+      <button class="my-button delete-button" onclick="deleteTodo('${index}')">Delete</button>
     `;
     todoListHTML += html;
-  }
+  });
+
   todoListDiv.innerHTML = todoListHTML;
 }
 
