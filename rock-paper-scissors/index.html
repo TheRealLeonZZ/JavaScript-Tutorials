@@ -10,29 +10,18 @@
 
 <body>
     <h1>Rock Paper Scissors</h1>
-    <button class="move-button" onclick="
-        userPlay = rock;
-        mainGame(userPlay);
-    "><img class="js-rock-btn-img move-icon"></button>
+    <button class="move-button js-rock-button"><img class="js-rock-button-img move-icon"></button>
 
-    <button class="move-button" onclick="
-        userPlay = paper;
-        mainGame(userPlay);
-    "><img class="js-paper-btn-img move-icon"></button>
+    <button class="move-button js-paper-button"><img class="js-paper-button-img move-icon"></button>
 
-    <button class="move-button" onclick="
-        userPlay = scissors;
-        mainGame(userPlay);
-    "><img class="js-scissors-btn-img move-icon"></button>
+    <button class="move-button js-scissors-button"><img class="js-scissors-button-img move-icon"></button>
 
     <p class="js-winner-paragraph winner-paragraph"></p>
     <p class="js-moves moves-paragraph"></p>
     <p class="js-score-paragraph score-paragraph"></p>
 
-    <button class="my-button reset-score-button" onclick="
-        resetScore()
-    ">Reset Score</button>
-    <button class="my-button autoplay-button js-autoplay-button" onclick="autoPlay()">AutoPlay</button>
+    <button class="my-button reset-score-button js-reset-button">Reset Score</button>
+    <button class="my-button autoplay-button js-autoplay-button">AutoPlay</button>
 
     <script src=" index.js"></script>
 </body>

@@ -128,6 +128,42 @@ function updateMoves(userMove, pcMove) {
   movesP.appendChild(document.createTextNode(" (PC "));
 }
 
+// Adding event listeners:
+const rockButton = document.querySelector(".js-rock-button");
+const paperButton = document.querySelector(".js-paper-button");
+const scissorsButton = document.querySelector(".js-scissors-button");
+const resetButton = document.querySelector(".js-reset-button");
+const autoPlayButton = document.querySelector(".js-autoplay-button");
+
+rockEventListener = () => {
+  const userPlay = rock;
+  mainGame(userPlay);
+};
+
+paperEventListener = () => {
+  const userPlay = paper;
+  mainGame(userPlay);
+};
+
+scissorsEventListener = () => {
+  const userPlay = scissors;
+  mainGame(userPlay);
+};
+
+resetEventListener = () => {
+  resetScore();
+};
+
+autoPlayEventListener = () => {
+  autoPlay();
+};
+
+rockButton.addEventListener("click", rockEventListener);
+paperButton.addEventListener("click", paperEventListener);
+scissorsButton.addEventListener("click", scissorsEventListener);
+resetButton.addEventListener("click", resetEventListener);
+autoPlayButton.addEventListener("click", autoPlayEventListener);
+
 let score = JSON.parse(localStorage.getItem("score")) || {
   wins: 0,
   losses: 0,
@@ -154,8 +190,8 @@ const paperImg = imagesPath + "paper-emoji.png";
 const scissorsImg = imagesPath + "scissors-emoji.png";
 
 // Image setters
-document.querySelector(".js-rock-btn-img").src = rockImg;
-document.querySelector(".js-paper-btn-img").src = paperImg;
-document.querySelector(".js-scissors-btn-img").src = scissorsImg;
+document.querySelector(".js-rock-button-img").src = rockImg;
+document.querySelector(".js-paper-button-img").src = paperImg;
+document.querySelector(".js-scissors-button-img").src = scissorsImg;
 
 updateScore(score);
