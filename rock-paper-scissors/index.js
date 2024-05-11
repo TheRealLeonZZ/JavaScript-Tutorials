@@ -34,7 +34,7 @@ function autoPlay() {
       let computerRand = Math.floor(Math.random() * 3) + 1;
       let userMove = translateMove(computerRand);
       mainGame(userMove);
-    }, 500);
+    }, 300);
   } else {
     isPlaying = false;
     document.querySelector(".js-autoplay-button").innerHTML = "AutoPlay";
@@ -135,26 +135,25 @@ const scissorsButton = document.querySelector(".js-scissors-button");
 const resetButton = document.querySelector(".js-reset-button");
 const autoPlayButton = document.querySelector(".js-autoplay-button");
 
-rockEventListener = () => {
-  const userPlay = rock;
-  mainGame(userPlay);
+const pageBody = document.body;
+
+const rockEventListener = () => {
+  mainGame(rock);
 };
 
-paperEventListener = () => {
-  const userPlay = paper;
-  mainGame(userPlay);
+const paperEventListener = () => {
+  mainGame(paper);
 };
 
-scissorsEventListener = () => {
-  const userPlay = scissors;
-  mainGame(userPlay);
+const scissorsEventListener = () => {
+  mainGame(scissors);
 };
 
-resetEventListener = () => {
+const resetEventListener = () => {
   resetScore();
 };
 
-autoPlayEventListener = () => {
+const autoPlayEventListener = () => {
   autoPlay();
 };
 
@@ -163,6 +162,20 @@ paperButton.addEventListener("click", paperEventListener);
 scissorsButton.addEventListener("click", scissorsEventListener);
 resetButton.addEventListener("click", resetEventListener);
 autoPlayButton.addEventListener("click", autoPlayEventListener);
+
+pageBody.addEventListener("keydown", (event) => {
+  if (event.key === "r") {
+    rockEventListener();
+  } else if (event.key === "p") {
+    paperEventListener();
+  } else if (event.key === "s") {
+    scissorsEventListener();
+  } else if (event.key === "a") {
+    autoPlayEventListener();
+  } else if (event.key === "Backspace") {
+    resetEventListener();
+  }
+});
 
 let score = JSON.parse(localStorage.getItem("score")) || {
   wins: 0,
