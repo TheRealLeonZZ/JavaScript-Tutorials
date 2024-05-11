@@ -149,8 +149,25 @@ const scissorsEventListener = () => {
   mainGame(scissors);
 };
 
-const resetEventListener = () => {
-  resetScore();
+const showResetEventListener = () => {
+  resetDivElement = document.querySelector(".js-reset-div");
+  resetDivElement.innerHTML =
+    "Are you sure you want to reset the score?<button class='my-button yes-button'>Yes</button> <button class='my-button no-button'>No</button>";
+
+  const yesButton = document.querySelector(".yes-button");
+  const noButton = document.querySelector(".no-button");
+
+  const resetEventListener = () => {
+    resetScore();
+    resetDivElement.innerHTML = "";
+  };
+
+  const clearResetDivEventListener = () => {
+    resetDivElement.innerHTML = "";
+  };
+
+  yesButton.addEventListener("click", resetEventListener);
+  noButton.addEventListener("click", clearResetDivEventListener);
 };
 
 const autoPlayEventListener = () => {
@@ -160,7 +177,7 @@ const autoPlayEventListener = () => {
 rockButton.addEventListener("click", rockEventListener);
 paperButton.addEventListener("click", paperEventListener);
 scissorsButton.addEventListener("click", scissorsEventListener);
-resetButton.addEventListener("click", resetEventListener);
+resetButton.addEventListener("click", showResetEventListener);
 autoPlayButton.addEventListener("click", autoPlayEventListener);
 
 pageBody.addEventListener("keydown", (event) => {
@@ -173,7 +190,7 @@ pageBody.addEventListener("keydown", (event) => {
   } else if (event.key === "a") {
     autoPlayEventListener();
   } else if (event.key === "Backspace") {
-    resetEventListener();
+    showResetEventListener();
   }
 });
 

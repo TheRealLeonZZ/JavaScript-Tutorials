@@ -36,21 +36,38 @@ body {
   margin-bottom: 40px;
 }
 
+.reset-div {
+  margin-top: 20px;
+}
+
 .my-button {
   font-size: 22px;
   color: white;
-  padding: 10px 24px;
+  padding: 10px 0px;
   border-style: solid;
   border-width: 2px;
+  border-color: rgb(10, 10, 10);
   background-color: transparent;
   cursor: pointer;
   margin-right: 10px;
+  text-align: center;
 }
 
 .reset-score-button {
   border-color: green;
+  width: 180px;
 }
 
 .autoplay-button {
   border-color: darkslateblue;
+  width: 180px;
+}
+
+.yes-button {
+  margin-left: 10px;
+  width: 80px;
+}
+
+.no-button {
+  width: 80px;
 }
