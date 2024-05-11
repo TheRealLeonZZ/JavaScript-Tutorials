@@ -24,12 +24,19 @@ function showTodo() {
     const html = `
       <div>${todoName}</div> 
       <div>${todoDueDate}</div>
-      <button class="my-button delete-button" onclick="deleteTodo('${index}')">Delete</button>
+      <button class="my-button delete-button js-delete-button">Delete</button>
     `;
     todoListHTML += html;
   });
 
   todoListDiv.innerHTML = todoListHTML;
+
+  // Add event listener
+  let allDeleteButtons = document.querySelectorAll(".js-delete-button");
+
+  allDeleteButtons.forEach((deleteButton, index) => {
+    deleteButton.addEventListener("click", () => deleteTodo(`${index}`));
+  });
 }
 
 function deleteTodo(deletedIndex) {
@@ -50,5 +57,15 @@ let todoList = JSON.parse(localStorage.getItem("todoList")) || [
     dueDate: "",
   },
 ];
+
+// Add event listeners
+const addButton = document.querySelector(".js-add-button");
+
+const addTodoEventListener = () => {
+  addTodo();
+};
+
+addButton.addEventListener("click", addTodoEventListener);
+
 let todoListHTML = "";
 showTodo();
