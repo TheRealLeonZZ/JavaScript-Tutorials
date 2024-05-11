@@ -18,7 +18,7 @@ function showTodo() {
   const todoListDiv = document.querySelector(".js-todo-list");
   todoListHTML = "";
 
-  todoList.forEach(function (todoObject, index) {
+  todoList.forEach((todoObject, index) => {
     const todoName = todoObject.name;
     const todoDueDate = todoObject.dueDate;
     const html = `
