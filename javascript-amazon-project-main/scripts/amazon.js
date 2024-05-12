@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let productsHTML = "";
@@ -60,6 +60,15 @@ products.forEach((product) => {
 const productsGridElement = document.querySelector(".js-products-grid");
 productsGridElement.innerHTML = productsHTML;
 
+function updateCartQuantity(cartQuantityElement) {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.productQuantity;
+  });
+
+  cartQuantityElement.innerHTML = `${cartQuantity}`;
+}
+
 const allAddToCartButtons = document.querySelectorAll(".js-add-to-cart");
 allAddToCartButtons.forEach((button, index) => {
   let addedToCartMsgTimeout;
@@ -70,45 +79,21 @@ allAddToCartButtons.forEach((button, index) => {
 
     const { productId } = button.dataset;
     const cartQuantityElement = document.querySelector(".js-cart-quantity");
-
     const productQuantityElement = document.querySelector(
       `.js-quantity-selector-${productId}`
     );
     const productQuantity = Number(productQuantityElement.value);
-
-    let matchingItem;
-
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-
-    if (matchingItem) {
-      matchingItem.productQuantity += productQuantity;
-    } else {
-      cart.push({
-        productId,
-        productQuantity,
-      });
-    }
-
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.productQuantity;
-    });
-
-    cartQuantityElement.innerHTML = `${cartQuantity}`;
-
-    // Show 'added to cart'
     const addedToCartElement = document.querySelector(
       `.js-added-to-cart-${productId}`
     );
 
-    addedToCartElement.classList.add("added-to-cart-visible");
+    addToCart(productId, productQuantity);
+    updateCartQuantity(cartQuantityElement);
 
+    //show added to cart
+    addedToCartElement.classList.add("added-to-cart-visible");
     addedToCartMsgTimeout = setTimeout(() => {
       addedToCartElement.classList.remove("added-to-cart-visible");
     }, "2000");
-  });
-});
+  }); //end click
+}); //end forEach button
