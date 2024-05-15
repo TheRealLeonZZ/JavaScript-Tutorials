@@ -1,10 +1,14 @@
 import { cart, removeFromCart, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
-// import { updateCartQuantity } from "./amazon.js";
+
+function updateCheckoutHeader() {
+  let cartQuantity = updateCartQuantity();
+  checkoutHeader.innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${cartQuantity} Items</a>)`;
+}
 
 const checkoutHeader = document.querySelector(".js-checkout-header");
-// let cartQuantity = updateCartQuantity();
+updateCheckoutHeader();
 
 let orderSummaryHTML = "";
 
@@ -115,5 +119,6 @@ allDeleteLinks.forEach((link) => {
 
     removeFromCart(productId);
     deletedItemContainer.remove();
+    updateCheckoutHeader();
   });
 });
