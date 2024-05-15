@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -40,7 +40,9 @@ cart.forEach((cartItem) => {
           <span class="update-quantity-link link-primary">
             Update
           </span>
-          <span class="delete-quantity-link link-primary">
+          <span class="delete-quantity-link link-primary js-delete-link" data-product-id=${
+            matchingProduct.id
+          }>
             Delete
           </span>
         </div>
@@ -52,7 +54,7 @@ cart.forEach((cartItem) => {
         </div>
         <div class="delivery-option">
           <input type="radio" checked class="delivery-option-input" name="delivery-option-${
-            cartItem.productId
+            matchingProduct.id
           }">
           <div>
             <div class="delivery-option-date">
@@ -65,7 +67,7 @@ cart.forEach((cartItem) => {
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${
-            cartItem.productId
+            matchingProduct.id
           }">
           <div>
             <div class="delivery-option-date">
@@ -78,7 +80,7 @@ cart.forEach((cartItem) => {
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${
-            cartItem.productId
+            matchingProduct.id
           }">
           <div>
             <div class="delivery-option-date">
@@ -97,3 +99,13 @@ cart.forEach((cartItem) => {
 
 const orderSummaryElement = document.querySelector(".js-order-summary");
 orderSummaryElement.innerHTML = orderSummaryHTML;
+
+const allDeleteLinks = document.querySelectorAll(".js-delete-link");
+
+allDeleteLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const productId = link.dataset.productId;
+    removeFromCart(productId);
+    console.log(cart);
+  });
+});
