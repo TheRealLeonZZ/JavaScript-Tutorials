@@ -13,17 +13,23 @@ if (!cart) {
   ];
 }
 
+export function findCartItemById(productId) {
+  let matchedItem;
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      matchedItem = cartItem;
+    }
+  });
+
+  return matchedItem;
+}
+
 function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 export function addToCart(productId, productQuantity) {
-  let matchingItem;
-  cart.forEach((cartItem) => {
-    if (productId === cartItem.productId) {
-      matchingItem = cartItem;
-    }
-  });
+  let matchingItem = findCartItemById(productId);
   if (matchingItem) {
     matchingItem.productQuantity += productQuantity;
   } else {
@@ -56,4 +62,15 @@ export function updateCartQuantity() {
   });
 
   return cartQuantity;
+}
+
+export function updateProductQuantity(productId, newQuantity) {
+  if (newQuantity >= 0 && newQuantity < 1000) {
+    let matchedItem = findCartItemById(productId);
+
+    matchedItem.productQuantity = newQuantity;
+    saveToStorage();
+  } else {
+    console.log("Invalid quantity to update");
+  }
 }
