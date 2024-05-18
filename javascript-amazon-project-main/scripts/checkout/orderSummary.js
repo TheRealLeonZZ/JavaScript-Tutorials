@@ -12,14 +12,12 @@ import {
   getDeliveryOptionById,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 import formatCurrency from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 export function renderOrderSummary() {
-  function updateCheckoutHeader() {
-    let cartQuantity = updateCartQuantity();
-    checkoutHeader.innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${cartQuantity} Items</a>)`;
-  }
+  renderCheckoutHeader();
 
   function updateQuantityKeyDown(event, productId) {
     if (event.key === "Enter") {
@@ -42,12 +40,9 @@ export function renderOrderSummary() {
     updateProductQuantity(cartItem.productId, newQuantity);
     quantityLabel.innerHTML = `${cartItem.productQuantity}`;
     cartItemContainer.classList.remove("is-editing-quantity");
-    updateCheckoutHeader();
     renderPaymentSummary();
+    renderCheckoutHeader();
   }
-
-  const checkoutHeader = document.querySelector(".js-checkout-header");
-  updateCheckoutHeader();
 
   let orderSummaryHTML = "";
 
@@ -166,7 +161,6 @@ export function renderOrderSummary() {
       const productId = link.dataset.productId;
 
       removeFromCart(productId);
-      updateCheckoutHeader();
       renderOrderSummary();
       renderPaymentSummary();
     });
