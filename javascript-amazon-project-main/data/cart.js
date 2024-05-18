@@ -31,9 +31,9 @@ function saveToStorage() {
 }
 
 export function addToCart(productId, productQuantity) {
-  let matchingItem = findCartItemById(productId);
-  if (matchingItem) {
-    matchingItem.productQuantity += productQuantity;
+  let matchedItem = findCartItemById(productId);
+  if (matchedItem) {
+    matchedItem.productQuantity += productQuantity;
   } else {
     cart.push({
       productId,
@@ -76,4 +76,10 @@ export function updateProductQuantity(productId, newQuantity) {
   } else {
     console.log("Invalid quantity to update");
   }
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchedItem = findCartItemById(productId);
+  matchedItem.deliveryOptionId = deliveryOptionId;
+  saveToStorage();
 }
