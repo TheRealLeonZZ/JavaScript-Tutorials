@@ -30,17 +30,16 @@ export function renderOrderSummary() {
     const quantityInput = document.querySelector(
       `.js-quantity-input-${productId}`
     );
-    const quantityLabel = document.querySelector(
-      `.js-quantity-label-${productId}`
-    );
     const cartItemContainer = document.querySelector(
       `.js-cart-item-container-${productId}`
     );
     const newQuantity = Number(quantityInput.value);
     const cartItem = findCartItemById(productId);
+
     updateProductQuantity(cartItem.productId, newQuantity);
-    quantityLabel.innerHTML = `${cartItem.productQuantity}`;
     cartItemContainer.classList.remove("is-editing-quantity");
+
+    renderOrderSummary();
     renderPaymentSummary();
     renderCheckoutHeader();
   }
