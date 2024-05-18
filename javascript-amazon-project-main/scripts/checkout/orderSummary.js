@@ -164,13 +164,10 @@ export function renderOrderSummary() {
   allDeleteLinks.forEach((link) => {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
-      const deletedItemContainer = document.querySelector(
-        `.js-cart-item-container-${productId}`
-      );
 
       removeFromCart(productId);
-      deletedItemContainer.remove();
       updateCheckoutHeader();
+      renderOrderSummary();
       renderPaymentSummary();
     });
   });
