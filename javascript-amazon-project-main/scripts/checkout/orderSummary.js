@@ -6,8 +6,12 @@ import {
   findCartItemById,
   updateDeliveryOption,
 } from "../../data/cart.js";
-import { products } from "../../data/products.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import { products, getProductById } from "../../data/products.js";
+import {
+  deliveryOptions,
+  getDeliveryOptionById,
+} from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 import formatCurrency from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
@@ -39,6 +43,7 @@ export function renderOrderSummary() {
     quantityLabel.innerHTML = `${cartItem.productQuantity}`;
     cartItemContainer.classList.remove("is-editing-quantity");
     updateCheckoutHeader();
+    renderPaymentSummary();
   }
 
   const checkoutHeader = document.querySelector(".js-checkout-header");
@@ -48,22 +53,10 @@ export function renderOrderSummary() {
 
   cart.forEach((cartItem) => {
     const cartProductId = cartItem.productId;
-    let matchingProduct;
-
-    products.forEach((product) => {
-      if (product.id === cartProductId) {
-        matchingProduct = product;
-      }
-    });
+    const matchingProduct = getProductById(cartProductId);
 
     const deliveryOptionId = cartItem.deliveryOptionId;
-    let deliveryOption;
-
-    deliveryOptions.forEach((option) => {
-      if (option.id === deliveryOptionId) {
-        deliveryOption = option;
-      }
-    });
+    const deliveryOption = getDeliveryOptionById(deliveryOptionId);
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
@@ -178,6 +171,7 @@ export function renderOrderSummary() {
       removeFromCart(productId);
       deletedItemContainer.remove();
       updateCheckoutHeader();
+      renderPaymentSummary();
     });
   });
 
@@ -214,6 +208,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = option.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
