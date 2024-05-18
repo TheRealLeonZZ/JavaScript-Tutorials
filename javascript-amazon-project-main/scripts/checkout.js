@@ -44,7 +44,6 @@ let orderSummaryHTML = "";
 
 cart.forEach((cartItem) => {
   const cartProductId = cartItem.productId;
-
   let matchingProduct;
 
   products.forEach((product) => {
@@ -169,13 +168,6 @@ allQuantityLinks.forEach((link) => {
       `.js-cart-item-container-${productId}`
     );
     cartItemContainer.classList.add("is-editing-quantity");
-
-    const quantityInput = document.querySelector(
-      `.js-quantity-input-${productId}`
-    );
-    quantityInput.addEventListener("keydown", (event) => {
-      updateQuantityKeyDown(event, productId);
-    });
   });
 });
 
@@ -183,5 +175,16 @@ allSaveLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const productId = link.dataset.productId;
     updateNewQuantity(productId);
+  });
+});
+
+// Add keyboard support for save button
+cart.forEach((cartItem) => {
+  const cartProductId = cartItem.productId;
+  const quantityInput = document.querySelector(
+    `.js-quantity-input-${cartProductId}`
+  );
+  quantityInput.addEventListener("keydown", (event) => {
+    updateQuantityKeyDown(event, cartProductId);
   });
 });
