@@ -33,6 +33,7 @@ describe("Test suite: renderOrderSummary", () => {
 
     const productNameElement1 = document.querySelector(`.js-product-name-test-${productId1}`);
     const productNameElement2 = document.querySelector(`.js-product-name-test-${productId2}`);
+
     expect(productNameElement1.innerHTML).toEqual("Black and Gray Athletic Cotton Socks - 6 Pairs");
     expect(productNameElement2.innerHTML).toEqual("Intermediate Size Basketball");
   });
