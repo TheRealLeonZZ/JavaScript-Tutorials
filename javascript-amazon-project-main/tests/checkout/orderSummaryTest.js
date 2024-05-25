@@ -32,10 +32,10 @@ describe("Test suite: renderOrderSummary", () => {
     renderOrderSummary();
   });
 
-  // afterEach(() => {
-  //   document.querySelector(".js-test-container").innerHTML = "";
-  // });
-  describe("Display tests", () => {
+  afterEach(() => {
+    document.querySelector(".js-test-container").innerHTML = "";
+  });
+  describe("Display value tests", () => {
     it("Displays the cart", () => {
       const itemsContainerElement = document.querySelectorAll(".js-cart-item-container");
       const productQuantityElement1 = document.querySelector(`.js-product-quantity-${productId1}`);
