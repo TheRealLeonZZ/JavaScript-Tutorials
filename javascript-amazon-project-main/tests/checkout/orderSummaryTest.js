@@ -30,6 +30,11 @@ describe("Test suite: renderOrderSummary", () => {
 
     loadFromStorage();
     renderOrderSummary();
+
+    const productNameElement1 = document.querySelector(`.js-product-name-test-${productId1}`);
+    const productNameElement2 = document.querySelector(`.js-product-name-test-${productId2}`);
+    expect(productNameElement1.innerHTML).toEqual("Black and Gray Athletic Cotton Socks - 6 Pairs");
+    expect(productNameElement2.innerHTML).toEqual("Intermediate Size Basketball");
   });
 
   afterEach(() => {
@@ -48,7 +53,6 @@ describe("Test suite: renderOrderSummary", () => {
 
   it("Removes a product", () => {
     const deleteLinkProduct1 = document.querySelector(`.js-delete-link-${productId1}`);
-    const deleteLinkProduct2 = document.querySelector(`.js-delete-link-${productId2}`);
 
     deleteLinkProduct1.click();
 

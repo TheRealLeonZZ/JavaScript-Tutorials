@@ -56,9 +56,7 @@ export function renderOrderSummary() {
         <img class="product-image" src="${matchingProduct.image}">
   
         <div class="cart-item-details">
-          <div class="product-name">
-          ${matchingProduct.name}
-          </div>
+          <div class="product-name js-product-name-test-${matchingProduct.id}">${matchingProduct.name}</div>
           <div class="product-price">
           $${formatCurrency(matchingProduct.priceCents)}
           </div>
