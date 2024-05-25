@@ -30,26 +30,37 @@ describe("Test suite: renderOrderSummary", () => {
 
     loadFromStorage();
     renderOrderSummary();
-
-    const productNameElement1 = document.querySelector(`.js-product-name-test-${productId1}`);
-    const productNameElement2 = document.querySelector(`.js-product-name-test-${productId2}`);
-
-    expect(productNameElement1.innerHTML).toEqual("Black and Gray Athletic Cotton Socks - 6 Pairs");
-    expect(productNameElement2.innerHTML).toEqual("Intermediate Size Basketball");
   });
 
-  afterEach(() => {
-    document.querySelector(".js-test-container").innerHTML = "";
-  });
+  // afterEach(() => {
+  //   document.querySelector(".js-test-container").innerHTML = "";
+  // });
+  describe("Display tests", () => {
+    it("Displays the cart", () => {
+      const itemsContainerElement = document.querySelectorAll(".js-cart-item-container");
+      const productQuantityElement1 = document.querySelector(`.js-product-quantity-${productId1}`);
+      const productQuantityElement2 = document.querySelector(`.js-product-quantity-${productId2}`);
 
-  it("Displays the cart", () => {
-    const itemsContainerElement = document.querySelectorAll(".js-cart-item-container");
-    const productQuantityElement1 = document.querySelector(`.js-product-quantity-${productId1}`);
-    const productQuantityElement2 = document.querySelector(`.js-product-quantity-${productId2}`);
+      expect(itemsContainerElement.length).toEqual(2);
+      expect(productQuantityElement1.innerText).toContain("Quantity: 2");
+      expect(productQuantityElement2.innerText).toContain("Quantity: 1");
+    });
 
-    expect(itemsContainerElement.length).toEqual(2);
-    expect(productQuantityElement1.innerText).toContain("Quantity: 2");
-    expect(productQuantityElement2.innerText).toContain("Quantity: 1");
+    it("Check displayed name values", () => {
+      const productNameElement1 = document.querySelector(`.js-product-name-test-${productId1}`);
+      const productNameElement2 = document.querySelector(`.js-product-name-test-${productId2}`);
+
+      expect(productNameElement1.innerHTML).toEqual("Black and Gray Athletic Cotton Socks - 6 Pairs");
+      expect(productNameElement2.innerHTML).toEqual("Intermediate Size Basketball");
+    });
+
+    it("Check displayed product base price values", () => {
+      const productPriceElement1 = document.querySelector(`.js-product-price-test-${productId1}`);
+      const productPriceElement2 = document.querySelector(`.js-product-price-test-${productId2}`);
+
+      expect(productPriceElement1.innerHTML).toEqual("$10.90");
+      expect(productPriceElement2.innerHTML).toEqual("$20.95");
+    });
   });
 
   it("Removes a product", () => {
