@@ -16,9 +16,7 @@ products.forEach((product) => {
     </div>
 
     <div class="product-rating-container">
-        <img class="product-rating-stars" src="images/ratings/rating-${
-          product.rating.stars * 10
-        }.png">
+        <img class="product-rating-stars" src="images/ratings/rating-${product.rating.stars * 10}.png">
         <div class="product-rating-count link-primary">
         ${product.rating.count}
         </div>
@@ -75,13 +73,9 @@ allAddToCartButtons.forEach((button, index) => {
     }
 
     const { productId } = button.dataset;
-    const productQuantityElement = document.querySelector(
-      `.js-quantity-selector-${productId}`
-    );
+    const productQuantityElement = document.querySelector(`.js-quantity-selector-${productId}`);
     const productQuantity = Number(productQuantityElement.value);
-    const addedToCartElement = document.querySelector(
-      `.js-added-to-cart-${productId}`
-    );
+    const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`);
 
     addToCart(productId, productQuantity);
 
