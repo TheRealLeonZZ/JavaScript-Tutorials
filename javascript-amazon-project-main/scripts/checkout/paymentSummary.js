@@ -8,9 +8,7 @@ export function renderPaymentSummary() {
   let shippingPriceCents = 0;
   cart.forEach((cartItem) => {
     const matchingProduct = getProductById(cartItem.productId);
-    const matchingDeliveryOption = getDeliveryOptionById(
-      cartItem.deliveryOptionId
-    );
+    const matchingDeliveryOption = getDeliveryOptionById(cartItem.deliveryOptionId);
 
     productPriceCents += matchingProduct.priceCents * cartItem.productQuantity;
     shippingPriceCents += matchingDeliveryOption.priceCents;
@@ -29,23 +27,17 @@ export function renderPaymentSummary() {
 
     <div class="payment-summary-row">
     <div>Items (${cartQuantity}):</div>
-    <div class="payment-summary-money">$${formatCurrency(
-      productPriceCents
-    )}</div>
+    <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
     </div>
 
     <div class="payment-summary-row">
     <div>Shipping &amp; handling:</div>
-    <div class="payment-summary-money">$${formatCurrency(
-      shippingPriceCents
-    )}</div>
+    <div class="payment-summary-money">$${formatCurrency(shippingPriceCents)}</div>
     </div>
 
     <div class="payment-summary-row subtotal-row">
     <div>Total before tax:</div>
-    <div class="payment-summary-money">$${formatCurrency(
-      totalBeforeTaxCents
-    )}</div>
+    <div class="payment-summary-money">$${formatCurrency(totalBeforeTaxCents)}</div>
     </div>
 
     <div class="payment-summary-row">
@@ -58,10 +50,27 @@ export function renderPaymentSummary() {
     <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
     </div>
 
-    <button class="place-order-button button-primary">
+    <button class="place-order-button button-primary
+    js-place-order">
     Place your order
     </button>`;
 
   const paymentSummaryElement = document.querySelector(".js-payment-summary");
   paymentSummaryElement.innerHTML = paymentSummaryHTML;
+
+  document.querySelector(".js-place-order").addEventListener("click", async () => {
+    const response = await fetch("https://supersimplebackend.dev/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cart }),
+      body: JSON.stringify({
+        cart: cart,
+      }),
+    });
+
+    const order = await response.json();
+    console.log(order);
+  });
 }
